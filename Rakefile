@@ -10,5 +10,6 @@ end
 
 Motion::Project::App.setup do |app|
   app.name = "SpaceDust"
+  app.icons = ["Icon.png"]
   app.frameworks += ["SpriteKit"]
 end
