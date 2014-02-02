@@ -1,3 +1,4 @@
 .bundle
 build
 .repl_history
+resources/.DS_Store
