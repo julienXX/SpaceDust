@@ -12,6 +12,7 @@ class HelloScene < SKScene
     self.backgroundColor = UIColor.blackColor
     self.scaleMode = SKSceneScaleModeAspectFit
     self.addChild newHelloNode
+    startBackgroundMusic
   end
 
   def newHelloNode
@@ -38,5 +39,17 @@ class HelloScene < SKScene
                             self.view.presentScene(spaceshipScene, transition: transition)
                           end)
     end
+  end
+
+  def startBackgroundMusic
+    error = Pointer.new(:object)
+    file = NSURL.fileURLWithPath(File.join(NSBundle.mainBundle.resourcePath, 'music.mp3'))
+    backgroundAudioPlayer = AVAudioPlayer.alloc.initWithContentsOfURL(file, error: error)
+    backgroundAudioPlayer.prepareToPlay
+
+    # this will play the music infinitely
+    backgroundAudioPlayer.numberOfLoops = -1
+    backgroundAudioPlayer.setVolume(1.0)
+    backgroundAudioPlayer.play
   end
 end
