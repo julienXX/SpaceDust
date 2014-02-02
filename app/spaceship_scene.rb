@@ -37,7 +37,7 @@ class SpaceshipScene < SKScene
   end
 
   def newSpaceship
-    hull = SKSpriteNode.alloc.initWithImageNamed('ship')
+    hull = SKSpriteNode.alloc.initWithImageNamed('Ship')
     hull.name = "hull"
     hull.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(hull.size)
     hull.physicsBody.dynamic = false
