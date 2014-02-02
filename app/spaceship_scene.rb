@@ -14,7 +14,7 @@ class SpaceshipScene < SKScene
   end
 
   def touchesBegan(touches, withEvent: event)
-    spaceship = self.childNodeWithName("hull")
+    spaceship = self.childNodeWithName('hull')
 
     unless spaceship.nil?
       location = touches.anyObject.locationInNode(self)
@@ -23,22 +23,27 @@ class SpaceshipScene < SKScene
   end
 
   def didSimulatePhysics
-    self.enumerateChildNodesWithName "rock", usingBlock: lambda { |node, stop| node.removeFromParent if node.position.y < 0 }
+    self.enumerateChildNodesWithName 'rock',
+      usingBlock: lambda do |node, stop|
+                    node.removeFromParent if node.position.y < 0
+                  end
   end
 
   def createSceneContents
     self.backgroundColor = UIColor.blackColor
     self.scaleMode = SKSceneScaleModeAspectFit
     spaceship = newSpaceship
-    spaceship.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-150)
+    spaceship.position = CGPointMake(CGRectGetMidX(self.frame),
+                                     CGRectGetMidY(self.frame) - 150)
     self.addChild spaceship
-    makeRocks = SKAction.sequence([SKAction.performSelector("addRock", onTarget: self), SKAction.waitForDuration(0.10, withRange: 0.15)])
+    makeRocks = SKAction.sequence([SKAction.performSelector('addRock', onTarget: self),
+                                   SKAction.waitForDuration(0.10, withRange: 0.15)])
     self.runAction(SKAction.repeatActionForever(makeRocks))
   end
 
   def newSpaceship
     hull = SKSpriteNode.alloc.initWithImageNamed('Ship')
-    hull.name = "hull"
+    hull.name = 'hull'
     hull.physicsBody = SKPhysicsBody.bodyWithRectangleOfSize(hull.size)
     hull.physicsBody.dynamic = false
     light1 = newLight
@@ -51,8 +56,10 @@ class SpaceshipScene < SKScene
   end
 
   def newLight
-    light = SKSpriteNode.alloc.initWithColor(UIColor.yellowColor, size: CGSizeMake(8,8))
-    blink = SKAction.sequence([SKAction.fadeOutWithDuration(0.05), SKAction.fadeInWithDuration(0.25)])
+    light = SKSpriteNode.alloc.initWithColor(UIColor.yellowColor,
+                                             size: CGSizeMake(8,8))
+    blink = SKAction.sequence([SKAction.fadeOutWithDuration(0.05),
+                               SKAction.fadeInWithDuration(0.25)])
     blinkForever = SKAction.repeatActionForever(blink)
     light.runAction(blinkForever)
     light
@@ -70,7 +77,8 @@ class SpaceshipScene < SKScene
 private
 
   def randomColor
-    [UIColor.brownColor, UIColor.grayColor, UIColor.lightGrayColor, UIColor.darkGrayColor].sample
+    [UIColor.brownColor, UIColor.grayColor,
+     UIColor.lightGrayColor, UIColor.darkGrayColor].sample
   end
 
   def randomSize
