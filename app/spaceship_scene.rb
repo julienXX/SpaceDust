@@ -44,10 +44,10 @@ class SpaceshipScene < SKScene
     musicURL = NSBundle.mainBundle.URLForResource('music', withExtension: 'mp3')
     @musicPlayer = AVAudioPlayer.alloc.initWithContentsOfURL(musicURL, error: nil)
 
-    @musicPlayer.numberOfLoops = -1
-    @musicPlayer.volume = 1.0
-    @musicPlayer.prepareToPlay
-    @musicPlayer.play
+    musicPlayer.numberOfLoops = -1
+    musicPlayer.volume = 1.0
+    musicPlayer.prepareToPlay
+    musicPlayer.play
   end
 
   def newSpaceship
