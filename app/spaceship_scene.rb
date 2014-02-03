@@ -24,9 +24,7 @@ class SpaceshipScene < SKScene
 
   def didSimulatePhysics
     self.enumerateChildNodesWithName 'rock',
-      usingBlock: lambda do |node, stop|
-                    node.removeFromParent if node.position.y < 0
-                  end
+      usingBlock: lambda { |node, stop| node.removeFromParent if node.position.y < 0 }
   end
 
   def createSceneContents
@@ -38,6 +36,7 @@ class SpaceshipScene < SKScene
     self.addChild spaceship
     makeRocks = SKAction.sequence([SKAction.performSelector('addRock', onTarget: self),
                                    SKAction.waitForDuration(0.10, withRange: 0.15)])
+    self.runAction(SKAction.playSoundFileNamed('music.mp3', waitForCompletion: false))
     self.runAction(SKAction.repeatActionForever(makeRocks))
   end
 
