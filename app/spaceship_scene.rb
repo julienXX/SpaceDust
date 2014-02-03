@@ -29,7 +29,7 @@ class SpaceshipScene < SKScene
 
   def createSceneContents
     self.backgroundColor = UIColor.blackColor
-    self.scaleMode = SKSceneScaleModeAspectFit
+    self.scaleMode = SKSceneScaleModeAspectFill
     spaceship = newSpaceship
     spaceship.position = CGPointMake(CGRectGetMidX(self.frame),
                                      CGRectGetMidY(self.frame) - 150)

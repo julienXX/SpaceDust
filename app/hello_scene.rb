@@ -10,7 +10,7 @@ class HelloScene < SKScene
 
   def createSceneContents
     self.backgroundColor = UIColor.blackColor
-    self.scaleMode = SKSceneScaleModeAspectFit
+    self.scaleMode = SKSceneScaleModeAspectFill
     self.addChild newHelloNode
   end
 
