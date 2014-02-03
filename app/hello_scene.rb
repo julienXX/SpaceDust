@@ -32,6 +32,7 @@ class HelloScene < SKScene
       fadeAway = SKAction.fadeOutWithDuration(0.25)
       remove = SKAction.removeFromParent
       moveSequence = SKAction.sequence [moveUp, zoom, pause, fadeAway, remove]
+      helloNode.runAction(SKAction.playSoundFileNamed('raygun.mp3', waitForCompletion: false))
       helloNode.runAction(moveSequence, completion: lambda do
                             spaceshipScene = SpaceshipScene.alloc.initWithSize(self.size)
                             transition = SKTransition.revealWithDirection(SKTransitionDirectionDown, duration: 0.2)
