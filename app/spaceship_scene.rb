@@ -1,5 +1,5 @@
 class SpaceshipScene < SKScene
-  attr_accessor :contentCreated
+  attr_accessor :contentCreated, :musicPlayer
 
   def skRand(low, high)
     random = Random.new
@@ -36,8 +36,18 @@ class SpaceshipScene < SKScene
     self.addChild spaceship
     makeRocks = SKAction.sequence([SKAction.performSelector('addRock', onTarget: self),
                                    SKAction.waitForDuration(0.10, withRange: 0.15)])
-    self.runAction(SKAction.playSoundFileNamed('music.mp3', waitForCompletion: false))
     self.runAction(SKAction.repeatActionForever(makeRocks))
+    playBackgroundMusic
+  end
+
+  def playBackgroundMusic
+    musicURL = NSBundle.mainBundle.URLForResource('music', withExtension: 'mp3')
+    @musicPlayer = AVAudioPlayer.alloc.initWithContentsOfURL(musicURL, error: nil)
+
+    @musicPlayer.numberOfLoops = -1
+    @musicPlayer.volume = 1.0
+    @musicPlayer.prepareToPlay
+    @musicPlayer.play
   end
 
   def newSpaceship
